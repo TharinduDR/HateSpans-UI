@@ -121,7 +121,7 @@ def main():
     with col1:
         sentence_text = st.text_area('Sentence', value=sentence)
 
-    st.header('Hate Spans')
+    st.header('Toxic Spans')
     tokens = model.predict_tokens(sentence_text)
 
     predictions = st.beta_container()
@@ -130,7 +130,7 @@ def main():
             (token.text, "", toxic_to_rgb(token.is_toxic))
             for token in tokens
             ]
-        st.write('Toxic Spans')
+        st.write('Predicted Toxic spans in the sentence')
         annotated_text(*text)
 
 
