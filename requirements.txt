@@ -1,5 +1,6 @@
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.7.0+cpu
 hatespans==0.1.1
-streamlit
-st-annotated-text
+streamlit==0.72.0
+st-annotated-text==1.0.1
+htbuilder==0.3.0
