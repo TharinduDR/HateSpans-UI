@@ -1,4 +1,4 @@
-pandas==0.23.0
+pandas==1.1.4
 hatespans==0.1.1
 streamlit==0.72.0
-annotated_text
+st-annotated-text==1.0.1
