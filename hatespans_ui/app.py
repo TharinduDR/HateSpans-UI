@@ -1,7 +1,7 @@
 from ast import literal_eval
 
 import streamlit as st
-from annotated_text import annotated_text
+# from annotated_text import annotated_text
 from hatespans.app.hate_spans_app import HateSpansApp
 import pandas as pd
 
@@ -131,7 +131,7 @@ def main():
             for token in tokens
             ]
         st.write('Predicted Toxic spans in the sentence')
-        annotated_text(*text)
+        # annotated_text(*text)
 
 
 if __name__ == "__main__":
