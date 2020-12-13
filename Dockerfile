@@ -2,7 +2,7 @@ FROM python:3.7.8-slim
 
 # remember to expose the port your app'll be exposed on.
 EXPOSE 8080
-RUN apt-get install python-dev
+RUN apt-get update -y && apt-get install -y gcc
 RUN pip install -U pip
 
 COPY requirements.txt app/requirements.txt
