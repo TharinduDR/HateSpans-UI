@@ -1,4 +1,4 @@
-FROM python:3.7.8-slim
+FROM python:3.7-slim
 
 # remember to expose the port your app'll be exposed on.
 EXPOSE 8080
@@ -13,4 +13,4 @@ COPY . /app
 WORKDIR /app
 
 # run it!
-ENTRYPOINT ["streamlit", "run", "streamlit_app.py", "--server.port=8080", "--server.address=0.0.0.0", "server.enableCORS=false"]
+ENTRYPOINT ["streamlit", "run", "streamlit_app.py", "--server.port=8080", "--server.address=0.0.0.0", "--server.enableCORS=false"]
