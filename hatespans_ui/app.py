@@ -103,7 +103,7 @@ def main():
     st.sidebar.header("Available Models")
     selected_model = st.sidebar.radio(
         'Select a pretrained model to use',
-        ["en_base", "en-large", "multilingual-base", "multilingual-large"],
+        ["en-base", "en-large", "multilingual-base", "multilingual-large"],
     )
 
     model = get_model(selected_model)
