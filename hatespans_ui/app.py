@@ -10,6 +10,7 @@ en_large = HateSpansApp("en-large", use_cuda=False)
 multi_lingual_base = HateSpansApp("multilingual-base", use_cuda=False)
 multi_lingual_large = HateSpansApp("multilingual-large", use_cuda=False)
 
+
 def toxic_to_rgb(is_toxic: bool):
     if is_toxic:
         return "rgb(255, 0, 0)"
