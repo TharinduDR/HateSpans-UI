@@ -5,6 +5,10 @@ from annotated_text import annotated_text
 from hatespans.app.hate_spans_app import HateSpansApp
 import pandas as pd
 
+en_base = HateSpansApp("small", use_cuda=False)
+en_large = HateSpansApp("en-large", use_cuda=False)
+multi_lingual_base = HateSpansApp("multilingual-base", use_cuda=False)
+multi_lingual_large = HateSpansApp("multilingual-large", use_cuda=False)
 
 def toxic_to_rgb(is_toxic: bool):
     if is_toxic:
@@ -33,7 +37,7 @@ def get_data(dataset_name):
         return data
 
     if dataset_name == "OGDT":
-        data = pd.read_csv('hatespans_ui/assets/data/offenseval-da-test-v1.tsv', sep="\t")
+        data = pd.read_csv('hatespans_ui/assets/data/offenseval-gr-test-v1.tsv', sep="\t")
         data = data.rename(columns={'tweet': 'text'})
         return data
 
@@ -48,14 +52,17 @@ def get_data(dataset_name):
 
 def get_model(model_name):
 
+    if model_name == "en-base":
+        return en_base
+
     if model_name == "en-large":
-        return HateSpansApp("en-large", use_cuda=False)
+        return en_large
 
     if model_name == "multilingual-base":
-        return HateSpansApp("multilingual-base", use_cuda=False)
+        return multi_lingual_base
 
     if model_name == "multilingual-large":
-        return HateSpansApp("multilingual-large", use_cuda=False)
+        return multi_lingual_large
 
     else:
         return None
@@ -95,7 +102,7 @@ def main():
     st.sidebar.header("Available Models")
     selected_model = st.sidebar.radio(
         'Select a pretrained model to use',
-        ["en-large", "multilingual-base", "multilingual-large"],
+        ["en_base", "en-large", "multilingual-base", "multilingual-large"],
     )
 
     model = get_model(selected_model)
