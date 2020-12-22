@@ -47,8 +47,6 @@ def get_data(dataset_name):
 
 
 def get_model(model_name):
-    if model_name == "en-base":
-        return HateSpansApp("en-base", use_cuda=False)
 
     if model_name == "en-large":
         return HateSpansApp("en-large", use_cuda=False)
@@ -56,7 +54,7 @@ def get_model(model_name):
     if model_name == "multilingual-base":
         return HateSpansApp("multilingual-base", use_cuda=False)
 
-    if model_name == "multilingual-base":
+    if model_name == "multilingual-large":
         return HateSpansApp("multilingual-large", use_cuda=False)
 
     else:
@@ -97,7 +95,7 @@ def main():
     st.sidebar.header("Available Models")
     selected_model = st.sidebar.radio(
         'Select a pretrained model to use',
-        ["en-base", "en-large", "multilingual-base", "multilingual-large"],
+        ["en-large", "multilingual-base", "multilingual-large"],
     )
 
     model = get_model(selected_model)
