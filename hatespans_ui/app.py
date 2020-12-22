@@ -27,6 +27,21 @@ def get_data(dataset_name):
         data["spans"] = data.spans.apply(literal_eval)
         return data
 
+    if dataset_name == "OLID":
+        data = pd.read_csv('hatespans_ui/assets/data/test_a_tweets.tsv', sep="\t")
+        data = data.rename(columns={'tweet': 'text'})
+        return data
+
+    if dataset_name == "OGDT":
+        data = pd.read_csv('hatespans_ui/assets/data/offenseval-da-test-v1.tsv', sep="\t")
+        data = data.rename(columns={'tweet': 'text'})
+        return data
+
+    if dataset_name == "Danish":
+        data = pd.read_csv("hatespans_ui/assets/data/offenseval-da-test-v1.tsv", sep="\t")
+        data = data.rename(columns={'tweet': 'text'})
+        return data
+
     else:
         return None
 
@@ -72,7 +87,7 @@ def main():
     st.sidebar.header("Available Datasets")
     selected_dataset_name = st.sidebar.radio(
         'Select a dataset to use',
-        ["Civil Comments Dataset"]
+        ["Civil Comments Dataset", "OLID", "OGDT", "Danish"]
     )
 
     df = get_data(selected_dataset_name)
@@ -128,7 +143,12 @@ def main():
         sentence_text = st.text_area('Sentence', value=sentence)
 
     st.header('Toxic Spans')
-    tokens = model.predict_tokens(sentence_text)
+
+    if selected_model == "en-base" or selected_model == "en-large":
+        tokens = model.predict_tokens(sentence_text, language="en")
+
+    else:
+        tokens = model.predict_tokens(sentence_text, language="xx")
 
     predictions = st.beta_container()
     with predictions:
